@@ -1,5 +1,7 @@
 install: 
-	composer install \
+	composer install; \
+	wait; \
+	composer run generate-salts; \
 	wait; \
 	cd ./cli; \
 	npm install \
