@@ -1,0 +1,65 @@
+{
+  "name": "sudomaxime/wordpress-bolt",
+  "description": "Setup a new WordPress installation via Composer.",
+  "license": "GPL-2.0-or-later",
+  "type": "project",
+  "keywords": [
+    "WordPress",
+    "skeleton",
+    "CMS",
+    "blog",
+    "composer",
+    "wpackagist"
+  ],
+  "authors": [
+    {
+      "name": "Maxime Nadeau",
+      "email": "maxime@agencesudo.ca",
+      "homepage": "http://weblove.ca",
+      "role": "DevOps"
+    }
+  ],
+  "support": {
+    "source": "https://github.com/sudomaxime/wordpress-bolt",
+    "issues": "https://github.com/sudomaxime/wordpress-bolt/issues"
+  },
+  "repositories": {
+    "wpackagist": {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    }
+  },
+  "require": {
+    "johnpbloch/wordpress": "@stable",
+    "composer/installers": "^1.8",
+    "wpscholar/phpdotenv": "^1.0"
+  },
+  "suggest": {
+    "wp-cli/wp-cli": "@stable"
+  },
+  "extra": {
+    "wordpress-install-dir": "wp",
+    "installer-paths": {
+      "content/mu-plugins/{$name}": [
+        "type:wordpress-muplugin"
+      ],
+      "content/plugins/{$name}": [
+        "type:wordpress-plugin"
+      ],
+      "content/themes/{$name}": [
+        "type:wordpress-theme"
+      ]
+    }
+  },
+  "scripts": {
+    "generate-salts": [
+      "php -r \"file_put_contents('salt.php', '<?php ' . PHP_EOL);\"",
+      "php -r \"file_put_contents('salt.php', file_get_contents('https://api.wordpress.org/secret-key/1.1/salt/'), FILE_APPEND);\""
+    ],
+    "post-create-project-cmd": [
+      "composer run generate-salts",
+      "php -r \"copy('.env.example', '.env');\"",
+      "php -r \"unlink('.env.example');\""
+    ]
+  }
+}

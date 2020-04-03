@@ -1,0 +1,34 @@
+# Mac
+.DS_Store
+
+# Composer
+/vendor
+
+# WordPress
+/wp
+/salt.php
+
+# WordPress: Config File
+/wp-config-*.php
+
+# WordPress: Must-Use Plugins
+/content/mu-plugins/*
+!/content/mu-plugins/index.php
+!/content/mu-plugins/register-theme-directory.php
+
+# WordPress: Plugins
+/content/plugins/*
+!/content/plugins/index.php
+
+# WordPress: Uploads
+/content/uploads/*
+!/content/uploads/index.php
+
+# WP-CLI
+wp-cli.local.yml
+
+# dotEnv Configuration
+.env
+
+# dont include cli node_modules
+/cli/node_modules
